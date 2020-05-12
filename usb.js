@@ -45,8 +45,12 @@ usb.Device.prototype.open = function(defaultConfig){
 }
 
 usb.Device.prototype.close = function(){
-	this.__close()
-	this.interfaces = null
+	try {		
+		this.__close()
+		this.interfaces = null
+	} catch (error) {
+		console.log(error)
+	}
 }
 
 Object.defineProperty(usb.Device.prototype, "configDescriptor", {
